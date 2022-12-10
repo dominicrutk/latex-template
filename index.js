@@ -1,3 +1,5 @@
 'use strict';
 
-console.log('Hello, world!');
+(async () => {
+  console.log('Hello, world!');
+})();
