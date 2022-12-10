@@ -1,31 +1,35 @@
 'use strict';
 
 import * as dotenv from 'dotenv';
+import ejs from 'ejs';
+import { writeFile } from 'fs/promises';
 import inquirer from 'inquirer';
-import * as nj from 'nunjucks';
 
 dotenv.config();
 
 (async () => {
-  const name = process.env.NAME ? process.env.NAME.trim() : '';
+  const authorName = process.env.NAME ? process.env.NAME.trim() : '';
   const classes = process.env.CLASSES ? process.env.CLASSES.split(',').map(courseName => courseName.trim()) : [];
   const collaborators = process.env.COLLABORATORS ? process.env.COLLABORATORS.split(',').map(collaboratorName => collaboratorName.trim()) : [];
 
   // Defining these empty values makes IntelliSense smarter
   let input = {
-    class: '',
+    className: '', // This cannot be 'class' because that creates issues with EJS
     assignment: '',
-    dueDate: '',
+    authorName,
     listCollaborators: false,
     collaborators: [],
+    collaboratorStr: '',
+    dueDate: '',
     problemCount: 0,
-    namedProblems: false
+    namedProblems: false,
+    problemNames: []
   };
 
   inquirer.prompt([
     {
       type: 'list',
-      name: 'class',
+      name: 'className',
       message: 'What class is the assignment for?',
       choices: classes
     },
@@ -42,7 +46,8 @@ dotenv.config();
     {
       type: 'confirm',
       name: 'listCollaborators',
-      message: 'Do you want to list collaborators?'
+      message: 'Do you want to list collaborators?',
+      default: true
     }
   ]).then(answers => {
     input = {...input, ...answers};
@@ -60,7 +65,31 @@ dotenv.config();
     }
   }).then(answers => {
     input = {...input, ...answers};
+    if (input.listCollaborators) {
+      // Sort alphabetically by last name, preserving the existing order in case of ties
+      input.collaborators.sort((a, b) => a.split(' ')[1].localeCompare(b.split(' ')[1]));
+      switch (input.collaborators.length) {
+        case 0:
+          input.collaboratorStr = 'no collaborators';
+          break;
+        case 1:
+          input.collaboratorStr = `collaborated with ${input.collaborators[0]}`;
+          break;
+        case 2:
+          input.collaboratorStr = `collaborated with ${input.collaborators[0]} and ${input.collaborators[1]}`;
+          break;
+        default:
+          input.collaboratorStr = `collaborated with ${input.collaborators.slice(0, -1).join(', ')}, and ${input.collaborators[input.collaborators.length - 1]}`;
+          break;
+      }
+    }
     return inquirer.prompt([
+      {
+        type: 'confirm',
+        name: 'titlePage',
+        message: 'Should there be a title page?',
+        default: true
+      },
       {
         type: 'number',
         name: 'problemCount',
@@ -69,7 +98,8 @@ dotenv.config();
       {
         type: 'confirm',
         name: 'namedProblems',
-        message: 'Do the problems have names?'
+        message: 'Do the problems have names?',
+        default: false
       }
     ]);
   }).then(answers => {
@@ -98,7 +128,7 @@ dotenv.config();
       }
     }
 
-    // Here is the input
+    console.log('Generating a LaTeX template with the following details:');
     console.log(input);
   }).catch(error => {
     if (error.isTtyError) {
@@ -108,5 +138,20 @@ dotenv.config();
       console.error(`An unexpected error was encountered: ${error}`);
       process.exit(1);
     }
+  }).then(() => {
+    return new Promise((resolve, reject) => {
+      ejs.renderFile(process.env.TEMPLATE, input, {}, (error, output) => {
+        if (error) {
+          return reject(error);
+        } else {
+          return resolve(output);
+        }
+      })
+    });
+  }).then(output => {
+    return writeFile(`${input.className} ${input.assignment}.tex`, output, 'utf8');
+  }).catch(error => {
+    console.error(`An unexpected error was encountered: ${error}`);
+    process.exit(1);
   });
 })();

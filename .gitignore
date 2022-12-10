@@ -1,3 +1,5 @@
+*.tex
+!template.tex
 template.pdf
 template.synctex.gz
 

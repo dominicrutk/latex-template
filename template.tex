@@ -18,12 +18,17 @@
 \setlist{itemsep=0pt, topsep=6pt}
 \newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
 
-\title{SUBJECT NUMBER HOMEWORK SET}
-\author{Dominic Rutkowski (collaborated with COLLABORATORS | no collaborators)}
-\date{Due MONTH DAY, YEAR}
+\title{<%= className %> <%= assignment %>}
+<%_ if (listCollaborators) { _%>
+\author{<%= authorName %> (<%= collaboratorStr %>)}
+<%_ } else { _%>
+\author{<%= authorName %>}
+<%_ } _%>
+\date{Due <%= dueDate %>}
 
 \begin{document}
 
+<% if (titlePage) { -%>
 \begin{titlepage}
     \null
     \nointerlineskip
@@ -37,24 +42,26 @@
     \thispagestyle{empty}
 \end{titlepage}
 \pagenumbering{arabic}\setcounter{page}{2}
+<% } else { -%>
+\maketitle
+<% } -%>
 
-\section{Problem 1}
+<% problemNames.slice(0, -1).forEach((problemName, i) => { -%>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM <%= i + 1 %> %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section<% if (!namedProblems) { -%>*<% } -%>{<%= problemName %>}
+
+
+%============================% SOLUTION <%= i + 1 %> %============================%
 \subsection*{Solution}
+
+
 \newpage
+<% }); %>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM <%= problemNames.length %> %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section<% if (!namedProblems) { -%>*<% } -%>{<%= problemNames[problemNames - 1] %>}
 
 
-\section{Problem 2}
+%============================% SOLUTION <%= problemNames.length %> %============================%
 \subsection*{Solution}
-\newpage
 
-
-\section{Problem 3}
-\subsection*{Solution}
-\newpage
-
-
-\section{Problem 4}
-\subsection*{Solution}
 
 \end{document}
-
