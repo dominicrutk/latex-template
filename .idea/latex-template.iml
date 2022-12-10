@@ -7,5 +7,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="@types/node" level="application" />
     <orderEntry type="library" name="@types/nunjucks" level="application" />
+    <orderEntry type="library" name="@types/inquirer" level="application" />
   </component>
 </module>
