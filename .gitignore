@@ -1,7 +1,7 @@
 *.tex
+*.pdf
+*.synctex.gz
 !template.tex
-template.pdf
-template.synctex.gz
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,macos,linux,intellij,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,macos,linux,intellij,visualstudiocode
