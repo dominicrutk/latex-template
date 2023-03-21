@@ -14,9 +14,17 @@
 \usepackage[utf8]{inputenc}
 \usepackage{mathtools}
 %\usepackage{qtree}
+%\usepackage{tikz}
+%\usetikzlibrary{positioning, shapes.misc}
 
-\setlist{itemsep=0pt, topsep=6pt}
-\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
+\newcommand{\PMod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\DeclareMathOperator{\lcm}{lcm}
 
 \title{<%= className %> <%= assignment %>}
 <%_ if (listCollaborators) { _%>
