@@ -12,11 +12,14 @@
 %    style=alphabetic,
 %    sorting=nty
 %]{biblatex}
+\usepackage{bm}
 \usepackage{cancel}
 \usepackage{comment}
 \usepackage{diagbox}
 \usepackage[shortlabels]{enumitem}
 \usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{listings}
 \usepackage{mathtools}
 %\usepackage{qtree}
 %\usepackage{tikz}
@@ -24,6 +27,7 @@
 
 %\addbibresource{bibliography.bib}
 
+\newcommand{\newp}{\medskip\noindent}
 \newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
 \newcommand{\PMod}[1]{\ (\mathrm{mod}\ #1)}
 \newcommand{\N}{\mathbb{N}}
@@ -32,6 +36,13 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \DeclareMathOperator{\lcm}{lcm}
+%\renewcommand{\Pr}[1]{\text{Pr}[#1]}
+%\newcommand{\E}[1]{\mathbb{E}[#1]}
+%\newcommand{\Var}[1]{\text{Var}(#1)}
+%\newcommand{\PrB}[1]{\text{Pr}\left[#1\right]}
+%\newcommand{\EB}[1]{\mathbb{E}\left[#1\right]}
+%\newcommand{\VarB}[1]{\text{Var}\left(#1\right)}
+%\newcommand{\BR}[1]{\bm{\mathrm{#1}}}
 
 \title{<%= className %> <%= assignment %>}
 <%_ if (listCollaborators) { _%>
