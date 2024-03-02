@@ -15,14 +15,17 @@
 \usepackage{bm}
 \usepackage{cancel}
 \usepackage{comment}
+\usepackage{csquotes}
 \usepackage{diagbox}
 \usepackage[shortlabels]{enumitem}
+\usepackage{float}
 \usepackage[margin=1in]{geometry}
-\usepackage{hyperref}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{listings}
 \usepackage{mathtools}
 %\usepackage{qtree}
 %\usepackage{tikz}
+\usepackage{todonotes}
 %\usetikzlibrary{positioning, shapes.misc}
 
 %\addbibresource{bibliography.bib}
@@ -36,13 +39,20 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \DeclareMathOperator{\lcm}{lcm}
-%\renewcommand{\Pr}[1]{\text{Pr}[#1]}
-%\newcommand{\E}[1]{\mathbb{E}[#1]}
-%\newcommand{\Var}[1]{\text{Var}(#1)}
-%\newcommand{\PrB}[1]{\text{Pr}\left[#1\right]}
-%\newcommand{\EB}[1]{\mathbb{E}\left[#1\right]}
-%\newcommand{\VarB}[1]{\text{Var}\left(#1\right)}
-%\newcommand{\BR}[1]{\bm{\mathrm{#1}}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+%\renewcommand{\Pr}[1]{\text{Pr}\left[#1\right]}
+%\newcommand{\E}[1]{\mathbb{E}\left[#1\right]}
+%\newcommand{\Var}[1]{\text{Var}\left(#1\right)}
+%\newcommand{\B}[1]{\bm{\mathrm{#1}}}
+%\DeclareMathOperator{\tr}{tr}
+%\DeclareMathOperator{\rank}{rank}
+%\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+%\DeclarePairedDelimiter{\normL}{\lVert}{\rVert_2}
+%\DeclarePairedDelimiter{\normLS}{\lVert}{\rVert_2^2}
+%\DeclarePairedDelimiter{\normF}{\lVert}{\rVert_F}
+%\DeclarePairedDelimiter{\normFS}{\lVert}{\rVert_F^2}
+%\newcommand{\dotp}[2]{\langle #1, #2 \rangle}
 
 \title{<%= className %> <%= assignment %>}
 <%_ if (listCollaborators) { _%>
