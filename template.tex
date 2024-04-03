@@ -31,28 +31,25 @@
 %\addbibresource{bibliography.bib}
 
 \newcommand{\newp}{\medskip\noindent}
-\newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
-\newcommand{\PMod}[1]{\ (\mathrm{mod}\ #1)}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
+\newcommand*{\Mod}[1]{\ \mathrm{mod}\ #1}
+\newcommand*{\PMod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand*{\N}{\mathbb{N}}
+\newcommand*{\Z}{\mathbb{Z}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\C}{\mathbb{C}}
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
-%\renewcommand{\Pr}[1]{\text{Pr}\left[#1\right]}
-%\newcommand{\E}[1]{\mathbb{E}\left[#1\right]}
-%\newcommand{\Var}[1]{\text{Var}\left(#1\right)}
-%\newcommand{\B}[1]{\bm{\mathrm{#1}}}
-%\DeclareMathOperator{\tr}{tr}
-%\DeclareMathOperator{\rank}{rank}
-%\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
-%\DeclarePairedDelimiter{\normL}{\lVert}{\rVert_2}
-%\DeclarePairedDelimiter{\normLS}{\lVert}{\rVert_2^2}
-%\DeclarePairedDelimiter{\normF}{\lVert}{\rVert_F}
-%\DeclarePairedDelimiter{\normFS}{\lVert}{\rVert_F^2}
-%\newcommand{\dotp}[2]{\langle #1, #2 \rangle}
+\renewcommand*{\Pr}[1]{\text{Pr}\left[#1\right]}
+\newcommand*{\E}[1]{\mathbb{E}\left[#1\right]}
+\newcommand*{\Var}[1]{\text{Var}\left[#1\right]}
+\newcommand*{\B}[1]{\bm{\mathrm{#1}}}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\newcommand*{\norm}[2][2]{\lVert #2 \rVert_{#1}}
+\newcommand*{\normS}[2][2]{\lVert #2 \rVert_{#1}^2}
+\newcommand*{\dotp}[2]{\langle #1, #2 \rangle}
 
 \title{<%= className %> <%= assignment %>}
 <%_ if (listCollaborators) { _%>
