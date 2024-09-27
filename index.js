@@ -22,6 +22,7 @@ dotenv.config();
     collaboratorStr: '',
     dueDate: '',
     problemCount: 0,
+    newPages: false,
     namedProblems: false,
     problemNames: []
   };
@@ -91,6 +92,12 @@ dotenv.config();
         default: true
       },
       {
+        type: 'confirm',
+        name: 'newPages',
+        message: 'Should each problem be on a new page?',
+        default: true
+      },
+      {
         type: 'number',
         name: 'problemCount',
         message: 'How many problems are there?'
@@ -146,7 +153,7 @@ dotenv.config();
         } else {
           return resolve(output);
         }
-      })
+      });
     });
   }).then(output => {
     return writeFile(`${input.className} ${input.assignment}.tex`, output, 'utf8');
